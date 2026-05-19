@@ -10,7 +10,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -31,7 +31,7 @@
     body {
       background: var(--navy);
       color: var(--white);
-      font-family: 'Syne', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
     }
@@ -92,7 +92,7 @@
     .nav-logo .icon svg { display: block; width: 100%; height: 100%; }
 
     .nav-logo .name {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 1.05rem;
       letter-spacing: -0.01em;
     }
@@ -127,7 +127,7 @@
       background: var(--purple);
       color: #fff;
       border-radius: 8px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 0.85rem;
       text-decoration: none;
@@ -150,8 +150,16 @@
 
     .nav-toggle svg { width: 26px; height: 26px; }
 
-    /* Hide mobile nav by default — only shown via mobile media query */
-    .nav-mobile { display: none; }
+    /* Hide mobile nav on desktop — overridden by mobile media query only */
+    .nav-mobile {
+      display: none !important;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    @media (max-width: 720px) {
+      .nav-mobile { visibility: visible; pointer-events: auto; }
+      .nav-mobile.open { display: flex !important; }
+    }
 
     /* HERO */
     .hero {
@@ -187,9 +195,9 @@
 
     .hero h1 {
       font-size: clamp(2.5rem, 7vw, 5.5rem);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
       max-width: 900px;
       margin: 0 auto 1.8rem;
       animation: fadeUp 1s ease 0.25s both;
@@ -223,7 +231,7 @@
     .btn {
       padding: 0.9rem 1.8rem;
       border-radius: 10px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 0.9rem;
       letter-spacing: 0.04em;
@@ -268,8 +276,8 @@
 
     .section-title {
       font-size: clamp(1.9rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-weight: 700;
+      letter-spacing: -0.015em;
       line-height: 1.1;
       margin-bottom: 1.2rem;
       max-width: 720px;
@@ -427,8 +435,8 @@
 
     .case h3 {
       font-size: clamp(1.4rem, 2.3vw, 1.9rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-weight: 700;
+      letter-spacing: -0.015em;
       line-height: 1.15;
       margin-bottom: 1.2rem;
     }
@@ -533,10 +541,10 @@
     }
 
     .browser-headline {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(0.95rem, 1.8vw, 1.3rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-weight: 700;
+      letter-spacing: -0.015em;
       color: var(--white);
       line-height: 1.15;
     }
@@ -602,14 +610,14 @@
 
     .stat .num {
       font-size: 2.2rem;
-      font-weight: 800;
+      font-weight: 700;
       background: linear-gradient(135deg, var(--purple), var(--lavender));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1;
       margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
     }
 
     .stat .label {
@@ -688,7 +696,7 @@
       color: var(--white);
       padding: 0.8rem 1rem;
       border-radius: 10px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.95rem;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
@@ -791,11 +799,10 @@
 
     /* IMAGES — branded photo treatment */
     .img-frame {
-      position: relative;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--line);
-      isolation: isolate;
+      background: var(--navy-2);
     }
 
     .img-frame img {
@@ -803,27 +810,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(0.3) contrast(1.05);
+      filter: grayscale(0.35) brightness(0.88) contrast(1.05);
       transition: transform 0.6s ease;
-    }
-
-    .img-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(135deg, rgba(28, 35, 64, 0.55), rgba(87, 29, 253, 0.45) 100%);
-      mix-blend-mode: multiply;
-      pointer-events: none;
-    }
-
-    .img-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: radial-gradient(circle at 30% 30%, transparent 30%, rgba(28, 35, 64, 0.6) 100%);
-      pointer-events: none;
     }
 
     .img-frame:hover img { transform: scale(1.04); }
@@ -887,8 +875,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(28, 35, 64, 0.6), rgba(87, 29, 253, 0.4));
-      mix-blend-mode: multiply;
+      background: linear-gradient(to top, rgba(22, 27, 51, 0.85) 0%, rgba(22, 27, 51, 0.2) 100%);
     }
 
     .case-visual.has-image .browser-content {
@@ -1093,7 +1080,7 @@
 
     <div class="why-layout">
       <div class="img-frame why-image">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80&auto=format&fit=crop"
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
              alt="Abstract technology infrastructure"
              loading="lazy" />
       </div>
@@ -1137,7 +1124,7 @@
     </p>
 
     <div class="img-frame process-banner">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80&auto=format&fit=crop"
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80"
            alt="Team collaboration"
            loading="lazy" />
     </div>
@@ -1194,7 +1181,7 @@
 
       <div class="case-visual has-image" aria-hidden="true">
         <div class="case-img-wrap">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80&auto=format&fit=crop"
+          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80"
                alt="Modern warehouse"
                loading="lazy" />
         </div>
@@ -1258,7 +1245,7 @@
       </div>
 
       <div class="img-frame about-image">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=900&q=80&auto=format&fit=crop"
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80"
              alt="Modern workspace"
              loading="lazy" />
       </div>
